@@ -22,7 +22,9 @@ class Relations
 		 tag(std::move(newTag)), value(oldRelations.getRelations()),
 		 guarantee(oldRelations.getLevel() >= Vic2::opinionLevel::friendly),
 		 sphereLeader(oldRelations.getLevel() == Vic2::opinionLevel::in_sphere),
-		 influenceValue(oldRelations.getInfluenceValue()), militaryAccess(oldRelations.hasMilitaryAccess())
+		 influenceValue(oldRelations.getInfluenceValue()), 
+		 militaryAccess(oldRelations.hasMilitaryAccess()),
+		 truceUntil(oldRelations.getTruceUntil())
 	{
 	}
 
@@ -32,6 +34,7 @@ class Relations
 	[[nodiscard]] bool getSphereLeader() const { return sphereLeader; }
 	[[nodiscard]] int getInfluenceValue() const { return influenceValue; }
 	[[nodiscard]] bool hasMilitaryAccess() const { return militaryAccess; }
+	[[nodiscard]] const auto& getTruceUntil() const { return truceUntil; }
 
   private:
 	std::string tag;
@@ -40,6 +43,7 @@ class Relations
 	bool sphereLeader;
 	int influenceValue;
 	bool militaryAccess = false;
+	std::optional<date> truceUntil;
 };
 
 } // namespace HoI4
